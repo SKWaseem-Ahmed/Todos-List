@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      name:
+      msg:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Person to greet'
         # Default value if no value is explicitly provided
@@ -16,6 +16,10 @@ on:
         # Input has to be provided for the workflow to run
         required: true
         # The data type of the input
+        type: string
+      name:
+        default: 'Person'
+        required: true
         type: string
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -29,4 +33,7 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+      run: echo "Hello ${{ inputs.msg }}"
+
+    - name: Ask
+      run: echo "How can I help you ${{ inputs.name }}"
